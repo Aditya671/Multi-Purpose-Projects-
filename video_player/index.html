@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <title>Custom Video Player</title>
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel='stylesheet' type='text/css' media='screen' href='../common_forAll/generated_css/main.css'>
+   <link rel='stylesheet' type='text/css' media='screen' href='./video.css'>
+</head>
+<body>
+   <section class="p-15">
+      <div class="">
+         <h1><b><i>Custom Video Player</i></b></h1>
+         <br/>
+         <div class="videoPlayerController" style="max-width: 500px;">
+            <video src="sblock.mp4" id='videoBox' class="screen" style="max-width: 500px;"></video>
+            <div class="controlBar">
+               <!-- 20% -->
+               <div class="mainBtns">
+                  <button class="btn btn-play" id="playBtn">
+                     <i class="fa fa-play"></i>
+                  </button>
+                  <button class="btn btn-stop" id="stopBtn">
+                     <i class="fa fa-stop"></i>
+                  </button>
+               </div>
+               <!-- 70% -->
+               <div class="progressBar">
+                  <input type="range" class="progress" id="progress" min="0" max="100" step="0.1" value="0"/>
+               </div>
+               <!-- 10% -->
+               <div class="timeStamp" id="timeStamp">
+                  00:00
+               </div>
+               <div class="moreControls">
+                  <button class="btn btn-fullScreen" id='reqFullScreen'>Full Screen</button>
+               </div>
+            </div>
+         </div>
+      </div> 
+   </section>
+   <!-- Script Below -->
+   <script src='video.js'></script>
+</body>
+</html>
