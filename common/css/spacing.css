@@ -1,0 +1,104 @@
+/* -------- Padding ----------- */
+.padd-30{
+  padding: 15px 30px;
+}
+.p-0{
+  padding: 0 !important;
+}
+.p-1{
+  padding:0.25rem;
+}
+.p-2{
+  padding:0.5rem;
+}
+.p-3{
+  padding:0.75rem;
+}
+.p-4{
+  padding:1.0rem;
+}
+.p-5{
+  padding:1.5rem;
+}
+.px-0{
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+.px-auto{
+  padding: 0 auto!important;
+}
+.py-auto{
+  padding: auto 0!important;
+}
+.p-15 {
+  padding: 15px;
+}
+.px-15{
+  padding: 0 15px;
+}
+.py-15{
+  padding: 15px 0;
+}
+.pt-15 {
+  padding-top: 15px;
+}
+.pb-15 {
+  padding-bottom: 15px;
+}
+.pl-15 {
+  padding-left: 15px;
+}
+.pr-15 {
+  padding-right: 15px;
+}
+/* -------- Margin ----------- */
+.m-0{
+  margin: 0 !important;
+}
+.mx-0{
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+.mx-auto{
+  margin: 0 auto!important;
+}
+.my-auto{
+  margin:auto 0!important;
+}
+.m-1{
+  margin:0.25rem;
+}
+.m-2{
+  margin:0.5rem;
+}
+.m-3{
+  margin:0.75rem;
+}
+.m-4{
+  margin:1.0rem;
+}
+.m-5{
+  margin:1.5rem;
+}
+.m-15 {
+  margin: 15px;
+}
+.mx-15{
+   margin: 0 15px;
+}
+.my-15{
+  margin: 15px 0;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.mb-15 {
+  margin-bottom: 15px;
+}
+.ml-15 {
+  margin-left: 15px;
+}
+.mr-15 {
+  margin-right: 15px;
+}

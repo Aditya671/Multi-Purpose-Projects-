@@ -1,0 +1,48 @@
+.btn {
+  cursor: pointer;
+  letter-spacing: 3.5px;
+  border-radius: 4px;
+  font-size: 18px;
+  line-height: 1.2;
+  height: fit-content;
+  align-self: center;
+  padding: 8px 14px;
+  /* margin: 15px 5px; */
+}
+a.btn{
+  text-decoration: none;
+}
+.btn-hidden-container{
+  background: transparent;
+  border: none;
+}
+.btn span{
+  color: #f2404c;
+}
+.btn-delete {
+  border: 1px solid #090e2c;
+  background: #fff;
+  /* color: #090e2c; */
+}
+.btn-OpenModal {
+  border: 1px solid #090e2c;
+  background: #090e2c;
+  /* color: #fff; */
+}
+.btn-cancel {
+  border: 1px solid #f2404c;
+  background: #f2404c;
+  /* color: #fff; */
+}
+.btn-theme {
+  border: 1px solid #fff;
+  background: #242582;
+  /* color: #fff; */
+}
+.btn-hidden {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  left: 0;
+  top: 0;
+}

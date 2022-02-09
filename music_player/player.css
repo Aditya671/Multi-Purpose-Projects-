@@ -1,0 +1,37 @@
+@import "/common/css/reset.css";
+@import "/common/css/cards.css";
+@import "/common/css/grid.css";
+@import "/common/css/spacing.css";
+@import "/common/css/buttons.css";
+@import "/common/css/media_screens/max576.css";
+@import "/common/css/media_screens/min576.css";
+@import "/common/css/media_screens/min768.css";
+@import "/common/css/media_screens/min992.css";
+@import "/common/css/media_screens/min1200.css";
+@import "/common/css/media_screens/min1400.css";
+@import "/common/css/media_screens/min1600.css";
+
+#player-container{
+   height: 480px;
+   max-height: 480px;
+}
+.player.card{
+   background-color: #c9ced3;
+   border-radius: 8px;
+   box-shadow: 0 0 15px 5px rgb(193 186 186 / 50%);
+}
+body{
+   height: 100%;
+}
+@media screen and (max-width:575px) {
+   #player-container{
+      height: 400px;
+      max-height: 400px;
+   }  
+}
+#videoThumbnail{
+   height: 280px;
+   min-height: 280px;
+   min-width: 280px;
+   width: 280px;
+}

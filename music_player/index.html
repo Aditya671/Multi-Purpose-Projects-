@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <title>Music Player</title>
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel='stylesheet' type='text/css' media='screen' href='player.css'>
+   <script src="https://unpkg.com/@popperjs/core@2"></script>
+   <script src="https://unpkg.com/tippy.js@6"></script>
+   <script src='index.js'></script>
+</head>
+<body class="body d-flex align-items-center justify-content-center">
+   <div class="container m-3" id="player-container">
+      <div class="player card p-2 " id="player">
+         <div class="player-dialog">
+            <div class="player-header row text-center align-items-center">
+               <div class="play-name col-sm-10">
+                  <div class="playlist-name">
+                     PlayList "<span id='playlistName'>My Playlist</span>"
+                  </div>
+                  <div class="song-name">
+                     "<span id="songName">My Song</span>" in Songs
+                  </div>
+               </div>
+               <div class="app-menu col-sm-2 text-right">
+                  <button class="btn btn-hidden-container" id="app-menu-icon">
+                     <span data-tooltipText="Application Menu">
+                        <i class="fa fa-ellipsis-v"></i>
+                     </span>
+                  </button>
+               </div>
+            </div>
+            <div class="player-body">
+               <section class="player-data row align-items-center">
+                  <div class="song-thumbnail col-sm-12 text-center">
+                     <img alt="Image of the Song" id='songThumbnail' class="img-thumbnail m-2 w-75"/>
+                  </div>
+                  <div class="song-details col-sm-12 px-15">
+                     <div class="row align-items-center">
+                        <div class="song-header col-sm-10">
+                           <div class="song-name">My Song</div>
+                           <div class="song-artist">My Artist</div>
+                        </div>
+                        <div class="like-me col-sm-2 text-center">
+                           <span class="likeIcon">H</span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="song-progress col-sm-12">
+                     <div class="progress-bar px-15">
+                        <div class="progress-range">
+                           <input type="range" id="progressOfSong" class="progress-inputField w-100" />
+                        </div>
+                        <span class="start-duration">0:00</span>
+                        <span class="end-duration float-right">5:00</span>
+                     </div>
+                  </div>
+               </section>
+            </div>
+            <div class="player-footer d-flex align-items-center justify-content-center">
+               <div class="player-functions row" style="width: 600px;">
+                  <div class="col-md-2 text-right">
+                     <button class="btn btn-hidden-container"  id="shuffleSong">
+                        <span data-tooltipText="Shuffle Songs List">
+                           <i class="fa fa-random" style="font-size:20px;"></i>
+                        </span>
+                     </button>
+                  </div>
+                  <div class="col-md-7 text-center">
+                     <button class="btn btn-hidden-container" id="backForward" >
+                        <span data-tooltipText="Decrease Song Speed">
+                           <i class="fa fa-backward" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="prevSong" >
+                        <span data-tooltipText="Previous Song">
+                           <i class='fa fa-angle-left' style='font-size:20px' ></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="playPause" >
+                        <span data-tooltipText="Play-Pause the Song">
+                           <i class="fa fa-pause" style="display: none;" id="pauseIcon" style="font-size:20px;"></i>
+                           <i class="fa fa-play" id="playIcon" style="font-size:20px;"></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="resetDuration" >
+                        <span data-tooltipText="Reset Duration">
+                           <i class="fa fa-stop" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     
+                     <button class="btn btn-hidden-container" id="nextSong" >
+                        <span data-tooltipText="Next Song">
+                           <i class='fa fa-angle-right' style='font-size:20px' ></i>	
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="fastForward" >
+                        <span data-tooltipText="Fast Forward">
+                           <i class="fa fa-forward" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                  </div>
+                  <div class="col-md-3">
+                     <button class="btn btn-hidden-container" id="repeatSong">
+                        <span data-tooltipText="Repeat Button">
+                           <i class="fa fa-repeat" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="playList">
+                        <span data-tooltipText="Show Playlist">
+                           <i class="fa fa-list" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      tippy('button span', {
+         placement: 'bottom',
+         animation:'fade',
+         content(reference) {
+            const id = reference.getAttribute('data-tooltipText');
+            return id;
+         },
+         allowHTML: true,
+      });
+   </script>
+</body>
+</html>

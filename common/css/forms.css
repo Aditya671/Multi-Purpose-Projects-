@@ -1,0 +1,84 @@
+::placeholder
+{
+  font-weight: 600;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Firefox */
+/* input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+input[type=number] {
+  -moz-appearance: textfield;
+} */
+
+fieldset{
+  border: 1px solid #fff;
+  border-radius: 8px;
+}
+input,
+textarea {
+  width: auto;
+}
+textarea {
+  resize: none;
+}
+.form-section {
+  cursor: pointer;
+  padding: 15px 25px;
+}
+.form-group {
+  position: relative;
+  margin: 15px 10px;
+  display: block;
+}
+.form-input{
+  position: relative;
+  display: flex;
+}
+.form-input span{
+  position: absolute;
+  top:0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-label{
+  padding:8px;
+}
+.form-control,.form-controlNotext {
+  width: 100%;
+  display: block;
+  font-size: 14px;
+  padding: 8px 0 8px 8px;
+  background: none;
+  border: none;
+}
+.form-control{
+  border-bottom-right-radius: 9px;
+}
+.form-control.info{
+  background: #f44336;
+}
+.form-control:focus,.form-control:active,.form-control:focus-visible{
+  outline: none;
+  border-top-right-radius: 12px;
+}
+select.form-control, select option{
+  font-weight: 500;
+}
+.form-error{
+  margin:5px;
+}
+.form-error .error-text{
+  color: #ec4705;
+  font-size: 16px;
+}
+/* 
+.search-width .form-control{
+  width: 100%;
+} */

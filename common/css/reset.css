@@ -1,0 +1,158 @@
+
+#root {
+  height: 100%;
+}
+html{
+  width: 100%;
+  height: 100%;
+}
+body {
+  position: relative;
+  font-family: "AdobeHebrew";
+  font-size: 16px;
+}
+
+.container-fluid {
+  max-width: 94%;
+  width: 100%;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.main {
+  height: 100%;
+  letter-spacing: 1.2px;
+  font-weight: normal;
+  margin: 0 auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+small {
+  font-family: "DancingScript";
+  font-weight: 600;
+  padding: 2px;
+  margin: 2px;
+  letter-spacing: 1.4px;
+}
+
+h1,.h1 {
+  font-size: 40px;
+}
+
+h2,.h2 {
+  font-size: 32px;
+}
+
+h3,.h3 {
+  font-size: 26px;
+}
+
+p,
+h5,.h5 {
+  font-family: "AdobeHebrew";
+  font-size: 16px;
+}
+
+.text-center {
+  text-align: center;
+}
+.text-right {
+  text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.d-none {
+  display: none;
+}
+.d-flex {
+  display: flex;
+}
+.d-block {
+  display: block;
+}
+.d-inlineblock {
+  display: inline-block;
+}
+.align-middle{
+  vertical-align: middle;
+}
+.w-100 {
+  width: 100%;
+}
+.h-100 {
+  height: 100%;
+}
+.w-75 {
+  width: 75%;
+}
+.h-75 {
+  height: 75%;
+}
+.w-50 {
+  width: 50%;
+}
+.h-50 {
+  height: 50%;
+}
+.w-25 {
+  width: 25%;
+}
+.h-25 {
+  height: 25%;
+}
+.w-auto {
+  width: auto;
+}
+.h-auto {
+  height: auto;
+}
+.zindex999 {
+  z-index: 999;
+}
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-fixed {
+  position: fixed;
+}
+.float-right {
+  float: right;
+}
+.rounded {
+  border-radius: 8px;
+}
+.rounded-sm {
+  border-radius: 4px;
+}
+.rounded-md {
+  border-radius: 6px;
+}
+.navbar {
+  font-family: "HoboStd";
+}
+.btn {
+  font-family: "HoboStd";
+}
+.modal {
+  font-family: "AdobeHebrew";
+}
+.img-thumbnail{
+  border: 4px solid #fffafa;
+  border-radius: 4px;
+}
+.img-fluid{
+  max-width:100%;
+  height:auto;
+  /* display: flex;
+  width: 100%; */
+  border-radius:12px ;
+  border:7px solid #fff;
+}
