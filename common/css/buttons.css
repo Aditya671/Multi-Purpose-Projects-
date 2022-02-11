@@ -26,8 +26,8 @@ a.btn{
 }
 .btn-OpenModal {
   border: 1px solid #090e2c;
-  background: #090e2c;
-  /* color: #fff; */
+  background: #090e2c!important;
+  color: #fff!important;
 }
 .btn-cancel {
   border: 1px solid #f2404c;

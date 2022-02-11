@@ -10,6 +10,7 @@ body {
   position: relative;
   font-family: "AdobeHebrew";
   font-size: 16px;
+  overflow: scroll;
 }
 
 .container-fluid {

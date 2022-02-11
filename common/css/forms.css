@@ -1,6 +1,7 @@
 ::placeholder
 {
-  font-weight: 600;
+  font-weight: 500;
+  color: #000;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -31,8 +32,9 @@ textarea {
 }
 .form-group {
   position: relative;
-  margin: 15px 10px;
-  display: block;
+  margin: 8px 4px;
+  width: -webkit-fill-available;
+  display: inline-block;
 }
 .form-input{
   position: relative;
@@ -48,18 +50,21 @@ textarea {
   justify-content: center;
 }
 .form-label{
-  padding:8px;
+  padding: 8px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  display: inline-block;
 }
 .form-control,.form-controlNotext {
   width: 100%;
   display: block;
   font-size: 14px;
-  padding: 8px 0 8px 8px;
   background: none;
-  border: none;
+  border: 1px solid slategrey;
 }
 .form-control{
   border-bottom-right-radius: 9px;
+  padding: 8px;
 }
 .form-control.info{
   background: #f44336;
@@ -70,6 +75,12 @@ textarea {
 }
 select.form-control, select option{
   font-weight: 500;
+}
+select option{
+  padding: 4px 2px;
+  margin: 4px 2px;
+  background-color:#fff8dc ;
+  
 }
 .form-error{
   margin:5px;
