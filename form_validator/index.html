@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <title>Form Validator</title>
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel='stylesheet' type='text/css' media='screen' href='./formValidator.css'>
+</head>
+<body class="d-flex align-items-center justify-content-center h-100">
+   <section class="p-15">
+      <div class="theme padd-30">
+         <form id='form' class="form">
+            <h2><legend>Registration Form</legend></h2>
+            <!-- username  -->
+            <div class="form-group">
+               <label class="form-label">Username</label>
+               <input type="text" placeholder="Enter Username" label="Username" id='username' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <!-- email -->
+            <div class="form-group">
+               <label class="form-label">Email</label>
+               <input type="email" label='Email' min='10' autocomplete="username" placeholder="Enter Email" id='email' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <!-- password -->
+            <div class="form-group">
+               <label class="form-label">Password</label>
+               <input type="password" label="Password" autocomplete="new-password" placeholder="Enter Password" id='password' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <!-- Confirm password -->
+            <div class="form-group">
+               <label class="form-label">Confirm Password</label>
+               <input type="password" label="Confirm Password" autocomplete="new-password" placeholder="Enter Password" id='confirm_password' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="form-group text-right">
+               <button type="submit" id='subit_form' class="form-control btn btn-OpenModal">Submit</button>
+            </div>
+         </form>
+      </div>
+   </section>
+
+   <script src='form.js'></script>
+</body>
+</html>
