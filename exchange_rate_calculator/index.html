@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+   <meta charset='utf-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <title>Exchnage rate Calculator</title>
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel='stylesheet' type='text/css' media='screen' href='./excRate.css'>
+</head>
+<body class="body d-flex h-100 align-items-center justify-content-center">
+   <section class="p-15 mx-auto theme ">
+      <div class="">
+         <h2><b><i>Exchnage rate Calculator</i></b></h2>
+         <br/>
+         <form id='form' class="form">
+            <div class="form-group">
+               <label class="form-label">Please Select Currency:</label>
+               <select aria-labelledby="CurrencySelector" class="form-control currencyList" id='currencyListSelector'>
+                  <option value="Choosecurrecy">Choose Currency</option>
+               </select>
+               <input type="hidden" id='getCurrency' value=""/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <div class="form-group">
+               <label class="form-label">Calculate Rate</label>
+               <input type="text" placeholder="Enter Rate" id='exchRate' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <div class="form-group">
+               <label class="form-label">Please Select to be Converted Currency:</label>
+               <select class="form-control currencyList" id='convertedCurrencySelector'>
+                  <option value="Choosecurrecy">Choose Currency</option>
+               </select>
+               <input type="hidden" id='getResultantCurrency' value=""/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+            <div class="form-group">
+               <label class="form-label">Converted Rate</label>
+               <input type="text" readonly placeholder="Rate" id='conRate' class="form-control isRequired"/>
+               <div class="form-error">
+                  <span class="error-text"></span>
+               </div>
+            </div>
+         </form>
+      </div> 
+      <div class="FinalExchangeRate padd-30"></div>
+   </section>
+   <!-- Script Below -->
+   <script src='exchangerate.js'></script>
+</body>
+</html>
