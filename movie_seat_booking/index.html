@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Movie Seat Booking</title>
+   <link rel='stylesheet' type='text/css' media='screen' href='./booking.css'>
+   <style>
+      .seats.selected{
+         color: green;
+      }
+      .seats.occupied{
+         color: brown;
+      }
+   </style>
+</head>
+<body class="d-flex card h-100 align-items-center justify-content-center">
+   <section class="p-15 theme" style="max-width: 650px;width: 100%;">
+      <form id='form' class="form">
+         <legend>Seat Booking for <span id='movieName'></span></legend>
+         <!-- Choose Movie  -->
+         <div class="form-group">
+            <label class="form-label">Please Select a Movie from dropdown:</label>
+            <select class="form-control" id='movieListSelector'>
+               <option value="ChooseMovie">---Choose Movie from below---</option>
+            </select>
+            <input type="hidden" id='getMovieField' value=""/>
+            <div class="form-error">
+               <span class="error-text"></span>
+            </div>
+         </div>
+         </form>
+         <div class="seatsTypes row py-15">
+            <span id='na' style="padding: 10px 20px;">NA <span style="color: grey;">&#9751;</span></span>
+            <span id='selected' style="padding: 10px 20px;">Selected <span style="color:green;">&#9751;</span></span>
+            <span id='occupied' style="padding: 10px 20px;">Occupied <span style="color: brown;">&#9751;</span></span>
+         </div>
+         <div class="SeatsRowSelector">
+            <div class="row" id='Seatrow-0'></div>
+            <div class="row" id='Seatrow-1'></div>
+            <div class="row" id='Seatrow-2'></div>
+            <div class="row" id='Seatrow-3'></div>
+            <div class="row" id='Seatrow-4'></div>
+            <div class="row" id='Seatrow-5'></div>
+            <div class="row" id='Seatrow-6'></div>
+            <div class="row" id='Seatrow-7'></div>
+            <div class="row" id='Seatrow-8'></div>
+         </div>
+         <div id="selectedMovieName">
+            <span>Selected Movie:- &ensp;<span id='MName'>None</span></span>
+            <br/>
+            <div id='selectedSeatsList'>
+               Seats Selected by You:- &ensp;<span>None</span>
+            </div>
+            <span id='MPrice' style="display: none;">Movie Ticket amount:- &ensp;<span id="priceOMovie"></span></span>
+            <div id="finalAmount" style="display: none;">Total Amount to Pay: <span id="payMe"></span></div>
+         </div>
+         <br/>
+   </section>
+   <script src="booking.js"></script>
+</body>
+</html>

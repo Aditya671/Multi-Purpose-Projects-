@@ -1,0 +1,24 @@
+{
+   "movieList":[
+   {
+      "name":"Movie 01",
+      "price":"$10.00",
+      "amount":"10.00"
+   },
+   {
+      "name":"Movie 02",
+      "price":"$12.00",
+      "amount":"12.00"
+   },
+   {
+      "name":"Movie 03",
+      "price":"$14.50",
+      "amount":"14.50"
+   },
+   {
+      "name":"Movie 04",
+      "price":"$18.00",
+      "amount":"18.00"
+   }
+   ]
+}

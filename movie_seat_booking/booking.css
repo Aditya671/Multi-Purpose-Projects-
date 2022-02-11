@@ -1,0 +1,27 @@
+@import "/common/css/reset.css";
+@import "/common/css/cards.css";
+@import "/common/css/grid.css";
+@import "/common/css/spacing.css";
+@import "/common/css/buttons.css";
+@import "/common/css/forms.css";
+@import "/common/css/media_screens/max576.css";
+@import "/common/css/media_screens/min576.css";
+@import "/common/css/media_screens/min768.css";
+@import "/common/css/media_screens/min992.css";
+@import "/common/css/media_screens/min1200.css";
+@import "/common/css/media_screens/min1400.css";
+@import "/common/css/media_screens/min1600.css";
+
+*{
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+.theme{
+   max-width: 480px;
+   background: aquamarine;
+   border-radius: 8px;
+}
+.seats{
+   font-size: 25px;
+}
