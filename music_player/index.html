@@ -9,7 +9,7 @@
    <link rel='stylesheet' type='text/css' media='screen' href='player.css'>
    <script src="https://unpkg.com/@popperjs/core@2"></script>
    <script src="https://unpkg.com/tippy.js@6"></script>
-   <script src='index.js'></script>
+
 </head>
 <body class="body d-flex align-items-center justify-content-center">
    <div class="container m-3" id="player-container">
@@ -35,22 +35,30 @@
             <div class="player-body">
                <section class="player-data row align-items-center">
                   <div class="song-thumbnail col-sm-12 text-center">
-                     <img alt="Image of the Song" id='songThumbnail' class="img-thumbnail m-2 w-75"/>
+                     <img alt="Image of the Song" id='songThumbnail' class="img-thumbnail fixed-thumbnail m-2 w-75"/>
                   </div>
                   <div class="song-details col-sm-12 px-15">
                      <div class="row align-items-center">
                         <div class="song-header col-sm-10">
-                           <div class="song-name">My Song</div>
+                           <div class="song-name player-song-name float-animation" data-songId="">My Song My Song My Song My Song</div>
                            <div class="song-artist">My Artist</div>
                         </div>
                         <div class="like-me col-sm-2 text-center">
-                           <span class="likeIcon">H</span>
+                           <span class="likeIcon likeThisSong" data-songId="" id="likeThisSong">
+                              <i class="fa fa-heart-o"></i>
+                           </span>
                         </div>
                      </div>
+                  </div>
+                  <div class="audio-track-data">
+                     <audio controls loop>
+                        <source src="" type="">
+                     </audio>
                   </div>
                   <div class="song-progress col-sm-12">
                      <div class="progress-bar px-15">
                         <div class="progress-range">
+                           
                            <input type="range" id="progressOfSong" class="progress-inputField w-100" />
                         </div>
                         <span class="start-duration">0:00</span>
@@ -61,14 +69,14 @@
             </div>
             <div class="player-footer d-flex align-items-center justify-content-center">
                <div class="player-functions row" style="width: 600px;">
-                  <div class="col-md-2 text-right">
-                     <button class="btn btn-hidden-container"  id="shuffleSong">
+                  <div class="col-2 col-md-2 text-right">
+                     <button class="btn btn-hidden-container"  id="shuffleSongList">
                         <span data-tooltipText="Shuffle Songs List">
                            <i class="fa fa-random" style="font-size:20px;"></i>
                         </span>
                      </button>
                   </div>
-                  <div class="col-md-7 text-center">
+                  <div class="col-7 col-md-7 text-center">
                      <button class="btn btn-hidden-container" id="backForward" >
                         <span data-tooltipText="Decrease Song Speed">
                            <i class="fa fa-backward" style="font-size:20px;" ></i>
@@ -81,9 +89,10 @@
                      </button>
                      <button class="btn btn-hidden-container" id="playPause" >
                         <span data-tooltipText="Play-Pause the Song">
-                           <i class="fa fa-pause" style="display: none;" id="pauseIcon" style="font-size:20px;"></i>
-                           <i class="fa fa-play" id="playIcon" style="font-size:20px;"></i>
+                           <i class="fa fa-pause" style="display:none!important" id="pauseSong" style="font-size:20px;"></i>
+                        <i class="fa fa-play" id="playSong" style="font-size:20px;"></i>
                         </span>
+                        
                      </button>
                      <button class="btn btn-hidden-container" id="resetDuration" >
                         <span data-tooltipText="Reset Duration">
@@ -102,13 +111,13 @@
                         </span>
                      </button>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-3 col-md-3">
                      <button class="btn btn-hidden-container" id="repeatSong">
                         <span data-tooltipText="Repeat Button">
                            <i class="fa fa-repeat" style="font-size:20px;" ></i>
                         </span>
                      </button>
-                     <button class="btn btn-hidden-container" id="playList">
+                     <button class="btn btn-hidden-container" id="playListModal">
                         <span data-tooltipText="Show Playlist">
                            <i class="fa fa-list" style="font-size:20px;" ></i>
                         </span>
@@ -119,6 +128,88 @@
          </div>
       </div>
    </div>
+   <div class="playlist-backdrop"></div>
+   <div class="container-fluid h-100 p-0 moveAnimation playlist-container" id="playlistContainer">
+      <div class="playlist-theme p-3">
+      <div class="playlist-dialog">
+         <div class="playlist-content">
+            <div class="playlist-header">
+               <div class="playlist-title pb-15">
+                  <h4 class="h4 text-center"><i>Playlist Name</i></h4>
+               </div>
+            </div>
+            <div class="playlist-body">
+               <div class="song-lists" id="songList">
+                  <div class="playlist-song-container">
+                     <div class="song-details row align-items-center" id="song-01" data-songId="">
+                        <div class="col-sm-3 text-center" data-songId="">
+                           <i class="fa musicIcon-size fa-music"></i>
+                        </div>                        
+                        <div class="col-sm-7">
+                           <div class="song-text">
+                              <h5 class="playlist-song-name" data-songName="01">
+                                 <span>Song 01 Song 01 Song 01 Song 01 Song 01 Song 01</span>
+                                 <div class="content"></div>
+                              </h5>
+                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                           </div>
+                        </div>                        
+                        <div class="col-sm-2 text-center">
+                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                              <i class="fa fa-heart-o"></i>
+                           </div>
+                        </div>                        
+                     </div>
+                     
+                     <div class="song-details row align-items-center" id="song-02" data-songId="">
+                        <div class="col-sm-3 text-center" data-songId="">
+                           <i class="fa musicIcon-size fa-music"></i>
+                        </div>                        
+                        <div class="col-sm-7">
+                           <div class="song-text">
+                              <h5 class="playlist-song-name" data-songName="02">
+                                 <span>Song 02 Song 02</span>
+                                 <div class="content"></div>
+                              </h5>
+                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                           </div>
+                        </div>                        
+                        <div class="col-sm-2 text-center">
+                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                              <i class="fa fa-heart-o"></i>
+                           </div>
+                        </div>                        
+                     </div>
+
+                     <div class="song-details row align-items-center" id="song-03" data-songId="">
+                        <div class="col-sm-3 text-center" data-songId="">
+                           <i class="fa musicIcon-size fa-music"></i>
+                        </div>                        
+                        <div class="col-sm-7">
+                           <div class="song-text">
+                              <h5 class="playlist-song-name" data-songName="03">
+                                 <span>Song 03 Song 03 Song 03 Song 03</span>
+                                 <div class="content"></div>
+                              </h5>
+                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                           </div>
+                        </div>                        
+                        <div class="col-sm-2 text-center">
+                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                              <i class="fa fa-heart-o"></i>
+                           </div>
+                        </div>                        
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+            <div class="playlist-footer"></div>
+         </div>
+      </div>
+   </div>
+   </div>
+   
    <script>
       tippy('button span', {
          placement: 'bottom',
@@ -129,6 +220,10 @@
          },
          allowHTML: true,
       });
+      // Styling CSS with JS
+      
    </script>
+
+<script src='index.js'></script>
 </body>
 </html>

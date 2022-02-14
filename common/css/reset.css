@@ -37,7 +37,7 @@ small {
   font-weight: 600;
   padding: 2px;
   margin: 2px;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.1px;
 }
 
 h1,.h1 {
@@ -51,7 +51,9 @@ h2,.h2 {
 h3,.h3 {
   font-size: 26px;
 }
-
+h4,.h4{
+  font-size: 20px;
+}
 p,
 h5,.h5 {
   font-family: "AdobeHebrew";

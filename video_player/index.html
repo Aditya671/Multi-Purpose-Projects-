@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
    <meta charset='utf-8'>
    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
@@ -14,7 +14,11 @@
          <h1><b><i>Custom Video Player</i></b></h1>
          <br/>
          <div class="videoPlayerController" style="max-width: 500px;">
-            <video src="sblock.mp4" id='videoBox' class="screen" style="max-width: 500px;"></video>
+            <video id='videoBox' class="screen" style="max-width: 500px;">
+               <source src="sblock.mp4" type="video/mp4">
+               <track src="sblock_en.vtt" kind="subtitles" srclang="en" label="English">
+            </video>
+            <track src=""/>
             <div class="controlBar">
                <!-- 20% -->
                <div class="mainBtns">
