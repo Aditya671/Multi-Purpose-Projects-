@@ -107,11 +107,19 @@ const updateAudioProgress = (e) => {
       songStartDuration.textContent = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
    }
    else{
-      songStartDuration.textContent = `0:00`;
       minutes = Math.floor( duration / 60);
       seconds = Math.floor( duration % 60);
+      if(isPlaying === false && audio.currentTime > 0){
+         let minutes1 = Math.floor(currentTime/ 60);
+         let seconds1 = Math.floor(currentTime % 60);
+         songStartDuration.textContent = `${minutes1}:${seconds1 < 10 ? `0${seconds1}` : seconds1}`;
+      }else{
+         songStartDuration.textContent = `0:00`;
+
+      }
       songEndDuration.textContent = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
    }
+
 }
 
 const setAudioProgress = (e) => {
@@ -201,7 +209,6 @@ fastBackward.addEventListener("click", (e) => {
       alert("minimum playback rate reached");
    }
 });
-
 progressOfSong.addEventListener("click",setAudioProgress);
 audio.addEventListener("loadeddata",updateAudioProgress);
 audio.addEventListener("timeupdate",updateAudioProgress);
