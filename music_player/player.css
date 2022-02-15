@@ -65,6 +65,8 @@ body{
 }
 audio{
    display: none!important;
+   width: 380px;
+   height: 40px;
 }
 .playlist-backdrop{
    animation: zoomIn 0.4s ease-in-out 0.1s 1 forwards alternate;
@@ -187,3 +189,37 @@ audio{
       font-size: 12px!important;
    }
 }
+
+
+input[type=range] {
+   height: 12px;
+   margin: 6px 0;
+   width: 100%;
+ }
+ input[type=range]:focus {
+   outline: none;
+ }
+ input[type=range]::-webkit-slider-runnable-track {
+   width: 100%;
+   height: 8px;
+   cursor: pointer;
+   animation-duration: 0.2s;
+   /* box-shadow: 1px 1px 1px #50555C; */
+   background: #50555C;
+   border-radius: 14px;
+   border: 0px solid #000000;
+ }
+ input[type=range]::-webkit-slider-thumb {
+   box-shadow: 0px 0px 0px #000000;
+   border: 0px solid #000000;
+   height: 16px;
+   width: 20px;
+   border-radius: 8px;
+   background: #529DE1;
+   cursor: pointer;
+   -webkit-appearance: none;
+   margin-top: -4px;
+ }
+ input[type=range]:focus::-webkit-slider-runnable-track {
+   background: #50555C;
+ }

@@ -5,8 +5,8 @@
    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
    <title>Music Player</title>
    <meta name='viewport' content='width=device-width, initial-scale=1'>
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel='stylesheet' type='text/css' media='screen' href='player.css'>
+   <link rel="stylesheet" href="../common/icons/font-awesome.min.css" type="text/css">
    <script src="https://unpkg.com/@popperjs/core@2"></script>
    <script src="https://unpkg.com/tippy.js@6"></script>
 
@@ -16,7 +16,7 @@
       <div class="player card p-2 " id="player">
          <div class="player-dialog">
             <div class="player-header row text-center align-items-center">
-               <div class="play-name col-sm-10">
+               <div class="play-name col-sm-9">
                   <div class="playlist-name">
                      PlayList "<span id='playlistName'>My Playlist</span>"
                   </div>
@@ -24,7 +24,7 @@
                      "<span id="songName">My Song</span>" in Songs
                   </div>
                </div>
-               <div class="app-menu col-sm-2 text-right">
+               <div class="app-menu col-sm-3 text-right">
                   <button class="btn btn-hidden-container" id="app-menu-icon">
                      <span data-tooltipText="Application Menu">
                         <i class="fa fa-ellipsis-v"></i>
@@ -43,26 +43,31 @@
                            <div class="song-name player-song-name float-animation" data-songId="">My Song My Song My Song My Song</div>
                            <div class="song-artist">My Artist</div>
                         </div>
-                        <div class="like-me col-sm-2 text-center">
+                        <div class="like-me col-sm-2 text-right">
                            <span class="likeIcon likeThisSong" data-songId="" id="likeThisSong">
                               <i class="fa fa-heart-o"></i>
                            </span>
+                           <button class="btn btn-hidden-container" id="playListModal">
+                              <span data-tooltipText="Show Playlist">
+                                 <i class="fa fa-list" style="font-size:20px;" ></i>
+                              </span>
+                           </button>
                         </div>
+                        
                      </div>
                   </div>
                   <div class="audio-track-data">
                      <audio controls loop>
-                        <source src="" type="">
+                        <source src="./01.mp3" type="audio/mp3">
                      </audio>
                   </div>
                   <div class="song-progress col-sm-12">
                      <div class="progress-bar px-15">
                         <div class="progress-range">
-                           
-                           <input type="range" id="progressOfSong" class="progress-inputField w-100" />
+                           <input type="range" value="0" id="progressOfSong" class="progress-inputField w-100" />
                         </div>
-                        <span class="start-duration">0:00</span>
-                        <span class="end-duration float-right">5:00</span>
+                        <span id="songStartDuration" class="start-duration"></span>
+                        <span id="songEndDuration" class="end-duration float-right"></span>
                      </div>
                   </div>
                </section>
@@ -112,16 +117,17 @@
                      </button>
                   </div>
                   <div class="col-3 col-md-3">
+                     <button class="btn btn-hidden-container" id="volumeControl">
+                        <span data-tooltipText="Change Volume">
+                           <i class="fa fa-volume-up" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
                      <button class="btn btn-hidden-container" id="repeatSong">
                         <span data-tooltipText="Repeat Button">
                            <i class="fa fa-repeat" style="font-size:20px;" ></i>
                         </span>
                      </button>
-                     <button class="btn btn-hidden-container" id="playListModal">
-                        <span data-tooltipText="Show Playlist">
-                           <i class="fa fa-list" style="font-size:20px;" ></i>
-                        </span>
-                     </button>
+                     
                   </div>
                </div>
             </div>

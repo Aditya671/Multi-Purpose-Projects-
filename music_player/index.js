@@ -1,6 +1,6 @@
 "use strict"
 // Controllers 
-let clickCount = 1;
+let clickCount = 1, isPlaying = false;
 const playListModal = document.querySelector('#playListModal');
 const playPause = document.querySelector("#playPause");
 const playSong = document.querySelector("#playSong");
@@ -14,12 +14,14 @@ const shuffleSongList = document.querySelector("#shuffleSongList");
 const progressOfSong = document.querySelector("#progressOfSong");
 const likeThisSong = document.querySelectorAll(".likeThisSong");
 const resetDuration = document.querySelector("#resetDuration");
+const volumeControl = document.querySelector("#volumeControl");
 const playlistContainer = document.querySelector("#playlistContainer");
 const playlistbackdrop = document.querySelector(".playlist-backdrop");
 const playListSongName = document.querySelectorAll(".playlist-song-name");
 const playlistSongBar = document.querySelector(".song-text").clientWidth;
 const audio = document.querySelector("audio");
-
+let songStartDuration = document.querySelector("#songStartDuration");
+let songEndDuration = document.querySelector("#songEndDuration");
 // CSS Changes
 
 const handleAddingMovingAnimation = (ele) =>{
@@ -93,6 +95,33 @@ const audioPlaySpeed = (fun,speed) => {
    }
 };
 
+const updateAudioProgress = (e) => {
+   const audioFile = e.srcElement;
+   const {currentTime,duration} = audioFile;
+   let minutes,seconds;
+   if(isPlaying){
+      const progressPercent = ( currentTime/ duration) * 100;
+      progressOfSong.value  = progressPercent;
+      minutes = Math.floor(currentTime/ 60);
+      seconds = Math.floor(currentTime % 60);
+      songStartDuration.textContent = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+   }
+   else{
+      songStartDuration.textContent = `0:00`;
+      minutes = Math.floor( duration / 60);
+      seconds = Math.floor( duration % 60);
+      songEndDuration.textContent = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
+   }
+}
+
+const setAudioProgress = (e) => {
+   const value = e.currentTarget.value;
+   if(isPlaying){
+      audio.currentTime = ( value * audio.duration ) / 100;
+      console.log(audio.currentTime , value * audio.duration )
+   }
+}
+
 playListSongName.forEach(ele => {
    ele.addEventListener("mouseenter",handleAddingMovingAnimation);
    ele.addEventListener("mouseleave",handleRemoveMovingAnimation);
@@ -108,6 +137,7 @@ playlistbackdrop.addEventListener("click", () =>   {
       playlistbackdrop.style.display = "none";
    }
 });
+
 playListModal.addEventListener("click", () => {   
    if(playlistContainer.classList.contains("open")){
       playlistContainer.classList.remove("open");
@@ -122,18 +152,21 @@ playListModal.addEventListener("click", () => {
 playPause.addEventListener("click",(e) => {
    if(pauseSong.style.display === "none"){
       pauseSong.style.display = "inline-block";
-      playSong.style.display = "none"
-      audio.pause();
+      playSong.style.display = "none";
+      isPlaying = true;
+      audio.play();
       audio.playbackRate = 1;
    }
    else{
       playSong.style.display = "inline-block";
       pauseSong.style.display = "none"
-      audio.play();
+      audio.pause();
+      isPlaying = false;
    }
 });
 resetDuration.addEventListener("click" , () => {
    audio.currentTime = 0;
+   audio.pause();
    audio.playbackRate = 1;
 });
 fastForward.addEventListener("click", (e) => {
@@ -168,3 +201,7 @@ fastBackward.addEventListener("click", (e) => {
       alert("minimum playback rate reached");
    }
 });
+
+progressOfSong.addEventListener("click",setAudioProgress);
+audio.addEventListener("loadeddata",updateAudioProgress);
+audio.addEventListener("timeupdate",updateAudioProgress);
