@@ -159,7 +159,7 @@ const updateAudioProgress = (e) => {
    const audioFile = e.srcElement;
    const {currentTime,duration} = audioFile;
    let minutes,seconds;
-   const secDuration = `0${seconds}`;
+   
    if(isPlaying === "true"){
       const progressPercent = ( currentTime/ duration) * 100;
       progressOfSong.value  = progressPercent;
@@ -171,6 +171,7 @@ const updateAudioProgress = (e) => {
    else{
       minutes = Math.floor( duration / 60);
       seconds = Math.floor( duration % 60);
+      const secDuration = `0${seconds}`;
       if(isPlaying === "false" && audio.currentTime > 0){
          let minutes1 = Math.floor(currentTime/ 60);
          let seconds1 = Math.floor(currentTime % 60);
