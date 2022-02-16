@@ -15,8 +15,8 @@
    <div class="container m-3" id="player-container">
       <div class="player card p-2 " id="player">
          <div class="player-dialog">
-            <div class="player-header row text-center align-items-center">
-               <div class="play-name col-sm-9">
+            <div class="player-header row text-center align-items-center position-relative">
+               <div class="play-name col-sm-12">
                   <div class="playlist-name">
                      PlayList "<span id='playlistName'>My Playlist</span>"
                   </div>
@@ -24,7 +24,7 @@
                      "<span id="songName">My Song</span>" in Songs
                   </div>
                </div>
-               <div class="app-menu col-sm-3 text-right">
+               <div class="app-menu text-right">
                   <button class="btn btn-hidden-container" id="app-menu-icon">
                      <span data-tooltipText="Application Menu">
                         <i class="fa fa-ellipsis-v"></i>
@@ -117,10 +117,15 @@
                      </button>
                   </div>
                   <div class="col-3 col-md-3">
-                     <button class="btn btn-hidden-container" id="volumeControl">
+                     <button class="btn btn-hidden-container position-relative" id="volumeControl">
                         <span data-tooltipText="Change Volume">
                            <i class="fa fa-volume-up" style="font-size:20px;" ></i>
                         </span>
+                        <div class="volumne-panel" style="display: none;">
+                           <div class="volume-dialog">
+                              <input type="range" value="100" id="volumeOfSong" class="progress-inputField volumeController w-100">
+                           </div>
+                        </div>
                      </button>
                      <button class="btn btn-hidden-container" id="repeatSong">
                         <span data-tooltipText="Repeat Button">
@@ -148,7 +153,7 @@
                <div class="song-lists" id="songList">
                   <div class="playlist-song-container">
                      <div class="song-details row align-items-center" id="song-01" data-songId="">
-                        <div class="col-sm-3 text-center" data-songId="">
+                        <div class="col-sm-2 text-center" data-songId="">
                            <i class="fa musicIcon-size fa-music"></i>
                         </div>                        
                         <div class="col-sm-7">
@@ -160,7 +165,7 @@
                               <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                            </div>
                         </div>                        
-                        <div class="col-sm-2 text-center">
+                        <div class="col-sm-3 text-center">
                            <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                               <i class="fa fa-heart-o"></i>
                            </div>
@@ -168,7 +173,7 @@
                      </div>
                      
                      <div class="song-details row align-items-center" id="song-02" data-songId="">
-                        <div class="col-sm-3 text-center" data-songId="">
+                        <div class="col-sm-2 text-center" data-songId="">
                            <i class="fa musicIcon-size fa-music"></i>
                         </div>                        
                         <div class="col-sm-7">
@@ -180,7 +185,7 @@
                               <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                            </div>
                         </div>                        
-                        <div class="col-sm-2 text-center">
+                        <div class="col-sm-3 text-center">
                            <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                               <i class="fa fa-heart-o"></i>
                            </div>
@@ -188,7 +193,7 @@
                      </div>
 
                      <div class="song-details row align-items-center" id="song-03" data-songId="">
-                        <div class="col-sm-3 text-center" data-songId="">
+                        <div class="col-sm-2 text-center" data-songId="">
                            <i class="fa musicIcon-size fa-music"></i>
                         </div>                        
                         <div class="col-sm-7">
@@ -200,7 +205,7 @@
                               <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                            </div>
                         </div>                        
-                        <div class="col-sm-2 text-center">
+                        <div class="col-sm-3 text-center">
                            <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                               <i class="fa fa-heart-o"></i>
                            </div>

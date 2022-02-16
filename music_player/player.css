@@ -45,6 +45,11 @@ body{
       max-height: 400px;
    }  
 }
+.app-menu {
+   display: inline-block;
+   position: absolute;
+   right: 0;
+}
 .fixed-thumbnail{
    margin-top: 15px;
    height: 240px;
@@ -223,3 +228,46 @@ input[type=range] {
  input[type=range]:focus::-webkit-slider-runnable-track {
    background: #50555C;
  }
+.volumne-panel{
+   position: absolute;
+   top: -72px;
+   left: -36px;
+}
+.clickCSS{
+   background: #dfe6ed;
+   border-radius: 14px;
+   box-shadow: 0 0 3px 0.5px rgb(0 0 0 / 15%);
+}
+.zIndex0{
+   z-index: 0;
+}
+.zIndex100{
+   z-index: 100;
+}
+.volumne-panel::after {
+   z-index: -1;
+   content: "";
+   top: -44px;
+   left: 42px;
+   width: 36px;
+   background: #dfe6ed;
+   border-radius: 4px;
+   box-shadow: 0 0 3px 0.5px rgb(0 0 0 / 15%);
+   position: absolute;
+   height: 150px;
+}
+.volume-dialog{
+   transform: rotate(270deg);
+   width: 120px;
+   height: 30px;
+   /* background: #dfe6ed;
+   border-radius: 4px;
+   box-shadow: 0 0 3px 0.5px rgba(0,0,0,0.15); */
+   display: flex;
+   align-items: center;
+   padding: 0 10px;
+}
+.volumeController{
+  
+   display: inline-block;
+}
