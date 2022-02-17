@@ -194,6 +194,11 @@ audio{
       font-size: 12px!important;
    }
 }
+@media screen and (max-width:768px) {
+   .btn{
+      padding: 6px 8px;
+   }
+}
 
 
 input[type=range] {

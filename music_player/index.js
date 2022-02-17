@@ -25,7 +25,7 @@ let songEndDuration = document.querySelector("#songEndDuration");
 let muteKey = 0; 
 
 // CSS Animations Handler
-const handleAddingMovingAnimation = (ele) =>{
+const handleAddingMovingAnimation = (ele) => {
    const parentDivSize = ele.currentTarget.getBoundingClientRect().width;
    const size = getTextWidth(ele.currentTarget.textContent,"16px");   
    const animationStyle = animate_moveText(parentDivSize,size);
@@ -141,11 +141,13 @@ const handlePlayRate = (speed) => {
       newRate = audioPlaySpeed("add",currentRate);
       localStorage.setItem("playRate",newRate);
       audio.playbackRate = newRate;
+      fastForward.children[0].dataset['nextrate'] = newRate;
       return true;
    }else if(currentPlayRate > 1.00 && speed === "decrease"){
       newRate = audioPlaySpeed("reduce",currentRate);
       audio.playbackRate = newRate;
       localStorage.setItem("playRate",newRate);
+      fastBackward.children[0].dataset['nextrate'] = newRate;
       return true;
    }
    else{
@@ -192,6 +194,18 @@ const setAudioProgress = (e) => {
       console.log(audio.currentTime , value * audio.duration )
    }
 }
+const playAudio = () => {
+   localStorage.setItem("isPlaying",true);
+   pauseSong.style.display = "inline-block";
+   playSong.style.display = "none";
+   audio.play();
+}
+const pauseAudio = () => {
+   localStorage.setItem("isPlaying",false);
+   playSong.style.display = "inline-block";
+   pauseSong.style.display = "none";
+   audio.pause();
+}
 
 // Elements Events Listeners and their methods
 playListSongName.forEach(ele => {
@@ -205,27 +219,18 @@ likeThisSong.forEach(ele => {
 
 playPause.addEventListener("click",(e) => {
    if(pauseSong.style.display === "none"){
-      pauseSong.style.display = "inline-block";
-      playSong.style.display = "none";
-      localStorage.setItem("isPlaying",true);
-      audio.play();
+      playAudio()
       audio.playbackRate = 1;
    }
    else{
-      playSong.style.display = "inline-block";
-      pauseSong.style.display = "none"
-      audio.pause();
-      localStorage.setItem("isPlaying",false);
+      pauseAudio();
    }
 });
 
 resetDuration.addEventListener("click" , () => {
    audio.currentTime = 0;
-   audio.pause();
    audio.playbackRate = 1;
-   pauseSong.style.display = "none";
-   playSong.style.display = "inline-block";
-   localStorage.setItem("isPlaying",false);
+   pauseAudio();
 });
 
 volumeOfSong.addEventListener("change",() => {
@@ -293,6 +298,7 @@ window.addEventListener("keydown", (e) => {
          pauseSong.style.display = "inline-block";       
       }
    }
+
    if(isShift){
       switch(e.code.toString()){
          case "Comma":
@@ -314,7 +320,7 @@ window.addEventListener("keydown", (e) => {
             break;
       }
    }
-})
+});
 
 window.onload = () => {
    localStorage.removeItem("isPlaying");

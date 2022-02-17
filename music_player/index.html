@@ -74,16 +74,16 @@
             </div>
             <div class="player-footer d-flex align-items-center justify-content-center">
                <div class="player-functions row" style="width: 600px;">
-                  <div class="col-2 col-md-2 text-right">
+                  <div class="col-2 col-sm-2 col-md-2 text-right">
                      <button class="btn btn-hidden-container"  id="shuffleSongList">
                         <span data-tooltipText="Shuffle Songs List">
                            <i class="fa fa-random" style="font-size:20px;"></i>
                         </span>
                      </button>
                   </div>
-                  <div class="col-7 col-md-7 text-center">
+                  <div class="col-7 col-sm-7 col-md-7 text-center">
                      <button class="btn btn-hidden-container" id="backForward" >
-                        <span data-tooltipText="Decrease Song Speed">
+                        <span data-tooltipText="Fase Backward"  data-nextrate="">
                            <i class="fa fa-backward" style="font-size:20px;" ></i>
                         </span>
                      </button>
@@ -111,12 +111,12 @@
                         </span>
                      </button>
                      <button class="btn btn-hidden-container" id="fastForward" >
-                        <span data-tooltipText="Fast Forward">
+                        <span data-tooltipText="Fast Forward" data-nextrate="">
                            <i class="fa fa-forward" style="font-size:20px;" ></i>
                         </span>
                      </button>
                   </div>
-                  <div class="col-3 col-md-3">
+                  <div class="col-3 col-sm-3 col-md-3">
                      <button class="btn btn-hidden-container position-relative" id="volumeControl">
                         <span data-tooltipText="Change Volume">
                            <i class="fa fa-volume-up" style="font-size:20px;" ></i>
@@ -222,6 +222,8 @@
    </div>
    
    <script>
+      const hovertext = document.querySelector("button span");
+    
       tippy('button span', {
          placement: 'bottom',
          animation:'fade',
