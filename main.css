@@ -1,0 +1,8 @@
+@import "/common/css/reset.css";
+@import "/common//css/grid.css";
+@import "/common//css/spacing.css";
+
+a{
+   text-decoration: none;
+   font-size: 18px;
+}

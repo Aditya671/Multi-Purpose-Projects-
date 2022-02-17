@@ -11,21 +11,7 @@
 @import "/common/css/media_screens/min1400.css";
 @import "/common/css/media_screens/min1600.css";
 
-*{
-   box-sizing: border-box;
-   padding: 0;
-   margin: 0;
 
-}
-.d-block{
-   display: block;
-}
-.d-none{
-   display: none;
-}
-.letterSpacing-0{
-   letter-spacing: 0.5px!important;
-}
 #player-container{
    height: 480px;
    max-height: 480px;
