@@ -26,10 +26,37 @@
                </div>
                <div class="app-menu text-right">
                   <button class="btn btn-hidden-container" id="app-menu-icon">
-                     <span data-tooltipText="Application Menu">
+                     <span data-tooltipText="Application Menu" id="app-menu-button">
                         <i class="fa fa-ellipsis-v"></i>
                      </span>
                   </button>
+               </div>
+               <div class="app-menu-container zIndex100" style="display: none;">
+                  <div class="app-menu-dialog">
+                     <div class="app-menu-details row">
+                        <div class="col-12text-left" data-menu="">
+                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Application Theme">
+                                 <i class="fa fa-sun-o"></i>
+                              </span>
+                              Theme: <span id="app-theme"></span></button>
+                        </div>
+                        <div class="col-12 text-left" data-menu="">
+                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Share Song">
+                                 <i class="fa fa-share-alt"></i>
+                              </span>
+                              Share</button>
+                        </div>
+                        <div class="col-12 text-left" data-menu="">
+                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Sleep timer">
+                                 <i class="fa fa-moon-o"></i>
+                              </span> 
+                              Sleep timer</button>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
             <div class="player-body">
@@ -95,7 +122,7 @@
                      <button class="btn btn-hidden-container" id="playPause" >
                         <span data-tooltipText="Play-Pause the Song">
                            <i class="fa fa-pause" style="display:none!important" id="pauseSong" style="font-size:20px;"></i>
-                        <i class="fa fa-play" id="playSong" style="font-size:20px;"></i>
+                           <i class="fa fa-play" style="display:inline-block!important"id="playSong" style="font-size:20px;"></i>
                         </span>
                         
                      </button>
@@ -139,86 +166,89 @@
          </div>
       </div>
    </div>
-   <div class="playlist-backdrop"></div>
-   <div class="container-fluid h-100 p-0 moveAnimation playlist-container" id="playlistContainer">
-      <div class="playlist-theme p-3">
-      <div class="playlist-dialog">
-         <div class="playlist-content">
-            <div class="playlist-header">
-               <div class="playlist-title pb-15">
-                  <h4 class="h4 text-center"><i>Playlist Name</i></h4>
-               </div>
-            </div>
-            <div class="playlist-body">
-               <div class="song-lists" id="songList">
-                  <div class="playlist-song-container">
-                     <div class="song-details row align-items-center" id="song-01" data-songId="">
-                        <div class="col-sm-2 text-center" data-songId="">
-                           <i class="fa musicIcon-size fa-music"></i>
-                        </div>                        
-                        <div class="col-sm-7">
-                           <div class="song-text">
-                              <h5 class="playlist-song-name" data-songName="01">
-                                 <span>Song 01 Song 01 Song 01 Song 01 Song 01 Song 01</span>
-                                 <div class="content"></div>
-                              </h5>
-                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
-                           </div>
-                        </div>                        
-                        <div class="col-sm-3 text-center">
-                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
-                              <i class="fa fa-heart-o"></i>
-                           </div>
-                        </div>                        
-                     </div>
-                     
-                     <div class="song-details row align-items-center" id="song-02" data-songId="">
-                        <div class="col-sm-2 text-center" data-songId="">
-                           <i class="fa musicIcon-size fa-music"></i>
-                        </div>                        
-                        <div class="col-sm-7">
-                           <div class="song-text">
-                              <h5 class="playlist-song-name" data-songName="02">
-                                 <span>Song 02 Song 02</span>
-                                 <div class="content"></div>
-                              </h5>
-                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
-                           </div>
-                        </div>                        
-                        <div class="col-sm-3 text-center">
-                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
-                              <i class="fa fa-heart-o"></i>
-                           </div>
-                        </div>                        
-                     </div>
-
-                     <div class="song-details row align-items-center" id="song-03" data-songId="">
-                        <div class="col-sm-2 text-center" data-songId="">
-                           <i class="fa musicIcon-size fa-music"></i>
-                        </div>                        
-                        <div class="col-sm-7">
-                           <div class="song-text">
-                              <h5 class="playlist-song-name" data-songName="03">
-                                 <span>Song 03 Song 03 Song 03 Song 03</span>
-                                 <div class="content"></div>
-                              </h5>
-                              <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
-                           </div>
-                        </div>                        
-                        <div class="col-sm-3 text-center">
-                           <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
-                              <i class="fa fa-heart-o"></i>
-                           </div>
-                        </div>                        
-                     </div>
-
+   <div class="playlist-modal" style="display: none;">
+      <div class="playlist-backdrop"></div>
+      <div class="container-fluid h-100 p-0 moveAnimation playlist-container" id="playlistContainer">
+         <div class="playlist-theme p-3">
+         <div class="playlist-dialog">
+            <div class="playlist-content">
+               <div class="playlist-header">
+                  <div class="playlist-title pb-15">
+                     <h4 class="h4 text-center"><i>Playlist Name</i></h4>
                   </div>
                </div>
+               <div class="playlist-body">
+                  <div class="song-lists" id="songList">
+                     <div class="playlist-song-container">
+                        <div class="song-details row align-items-center" id="song-01" data-songId="">
+                           <div class="col-sm-2 text-center" data-songId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-7">
+                              <div class="song-text">
+                                 <h5 class="playlist-song-name" data-songName="01">
+                                    <span>Song 01 Song 01 Song 01 Song 01 Song 01 Song 01</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-3 text-center">
+                              <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+                        
+                        <div class="song-details row align-items-center" id="song-02" data-songId="">
+                           <div class="col-sm-2 text-center" data-songId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-7">
+                              <div class="song-text">
+                                 <h5 class="playlist-song-name" data-songName="02">
+                                    <span>Song 02 Song 02</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-3 text-center">
+                              <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+   
+                        <div class="song-details row align-items-center" id="song-03" data-songId="">
+                           <div class="col-sm-2 text-center" data-songId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-7">
+                              <div class="song-text">
+                                 <h5 class="playlist-song-name" data-songName="03">
+                                    <span>Song 03 Song 03 Song 03 Song 03</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-3 text-center">
+                              <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+   
+                     </div>
+                  </div>
+               </div>
+               <div class="playlist-footer"></div>
             </div>
-            <div class="playlist-footer"></div>
          </div>
       </div>
-   </div>
+      </div>
+      
    </div>
    
    <script>
@@ -238,5 +268,6 @@
    </script>
 
 <script src='index.js'></script>
+<script src='keyboardHandler.js'></script>
 </body>
 </html>

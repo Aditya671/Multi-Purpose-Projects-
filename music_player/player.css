@@ -23,6 +23,9 @@
 .d-none{
    display: none;
 }
+.letterSpacing-0{
+   letter-spacing: 0.5px!important;
+}
 #player-container{
    height: 480px;
    max-height: 480px;
@@ -50,6 +53,15 @@ body{
    position: absolute;
    right: 0;
 }
+.app-menu-container {
+   position: absolute;
+   top: 26px;
+   right: 18px;
+   max-width: 150px;
+   background: #dfe6ed;
+   border-radius: 4px;
+   box-shadow: 0 0 3px 0.5px rgb(0 0 0 / 15%);
+}
 .fixed-thumbnail{
    margin-top: 15px;
    height: 240px;
@@ -73,6 +85,11 @@ audio{
    width: 380px;
    height: 40px;
 }
+.playlist-modal{
+   width: 100%;
+   position: absolute;
+   height: 100%;
+}
 .playlist-backdrop{
    animation: zoomIn 0.4s ease-in-out 0.1s 1 forwards alternate;
    position: absolute;
@@ -80,7 +97,7 @@ audio{
    right: 0;
    top: 0;
    z-index: 98;
-   display: none;
+   /* display: none; */
    bottom: 0;
    background-color: rgba(0,0,0,.4);
 }

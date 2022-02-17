@@ -1,5 +1,6 @@
 "use strict"
 // Elements Controllers 
+const appMenuButton = document.querySelector("#app-menu-button");
 const playListModal = document.querySelector('#playListModal');
 const playPause = document.querySelector("#playPause");
 const playSong = document.querySelector("#playSong");
@@ -15,8 +16,9 @@ const likeThisSong = document.querySelectorAll(".likeThisSong");
 const resetDuration = document.querySelector("#resetDuration");
 const volumeControl = document.querySelector("#volumeControl");
 const volumeOfSong = document.querySelector("#volumeOfSong");
-const playlistContainer = document.querySelector("#playlistContainer");
+const playlistModal = document.querySelector(".playlist-modal");
 const playlistbackdrop = document.querySelector(".playlist-backdrop");
+const playListContainer = document.querySelector("#playlistContainer");
 const playListSongName = document.querySelectorAll(".playlist-song-name");
 const playlistSongBar = document.querySelector(".song-text").clientWidth;
 const audio = document.querySelector("audio");
@@ -40,24 +42,36 @@ const handleRemoveMovingAnimation = (ele) => {
    ele.currentTarget.children[0].classList.remove("songAnimate")
 };
 
-const hideBackdrop = () => {
+const openPlaylistModal = () => {
    if(playlistContainer.classList.contains("open")){
       playlistContainer.classList.remove("open");
-      playlistbackdrop.style.display = "none";
-   }
-};
-
-const openPlaylist = () => {
-   if(playlistContainer.classList.contains("open")){
-      playlistContainer.classList.remove("open");
-      playlistbackdrop.style.display = "none";
    }
    else{
       playlistContainer.classList.add('open');
-      playlistbackdrop.style.display = "block";
    }
 };
+const toggleDisplay = (e) => {
+   if(e.style.display === "inline-block"){
+      e.style.display = "none";
+   }else{
+      e.style.display = "inline-block";
+   }
+}
+const changeVolume = (method) => {
+   const currentVol = audio.volume;
+   if(currentVol < 1.00 && currentVol > 0.00){
+      if(method === "add"){
+         audio.volume = currentVol + 0.02;
+      }
+      if(method === "subtract"){
+         audio.volume = currentVol + 0.02;
+      }
+      volumeOfSong.value = audio.volume * 100;
+   }else{
+      alert("Final Volume Reched");
+   }
 
+}
 const openVolumeBar = () => {
    if(!volumeControl.classList.contains("zIndex0")){
       volumeControl.classList.add("zIndex0");
@@ -196,14 +210,14 @@ const setAudioProgress = (e) => {
 }
 const playAudio = () => {
    localStorage.setItem("isPlaying",true);
-   pauseSong.style.display = "inline-block";
-   playSong.style.display = "none";
+   toggleDisplay(playSong);
+   toggleDisplay(pauseSong);
    audio.play();
 }
 const pauseAudio = () => {
    localStorage.setItem("isPlaying",false);
-   playSong.style.display = "inline-block";
-   pauseSong.style.display = "none";
+   toggleDisplay(playSong);
+   toggleDisplay(pauseSong);
    audio.pause();
 }
 
@@ -219,7 +233,7 @@ likeThisSong.forEach(ele => {
 
 playPause.addEventListener("click",(e) => {
    if(pauseSong.style.display === "none"){
-      playAudio()
+      playAudio();
       audio.playbackRate = 1;
    }
    else{
@@ -251,9 +265,15 @@ volumeControl.addEventListener("dblclick", () => {
    }
 });
 
-playlistbackdrop.addEventListener("click", hideBackdrop);
+playlistbackdrop.addEventListener("click", () =>{
+   openPlaylistModal();
+   toggleDisplay(playlistModal)
+}); 
 
-playListModal.addEventListener("click", openPlaylist);
+playListModal.addEventListener("click",() => {
+   toggleDisplay(playlistModal);
+   openPlaylistModal()
+});
 
 fastForward.addEventListener("click",() => handlePlayRate("increase"));
 
@@ -267,66 +287,6 @@ audio.addEventListener("loadeddata",updateAudioProgress);
 
 audio.addEventListener("timeupdate",updateAudioProgress);
 
+appMenuButton.addEventListener("click",() => toggleDisplay(document.querySelector(".app-menu-container")));
 
 // KeyBoard keys and Window handlers
-window.addEventListener("keydown", (e) => {
-   const isShift = e.shiftKey;
-   const altKey = e.altKey;
-   // const ctrlKey = e.ctrlKey;
-   if(e.key.toString() === "AudioVolumeMute"  && muteKey === 0){
-      audio.muted = true;
-      muteKey = 1;
-   }
-
-   if(e.key.toString() === "AudioVolumeMute"  && muteKey === 1){
-      muteKey = 0;
-      audio.muted = false;
-   }
-
-   if(e.code.toString() === "Space"){
-      let isPlay = localStorage.getItem("isPlaying");
-      if(isPlay === "true"){
-         audio.pause();    
-         localStorage.setItem("isPlaying",false);
-         playSong.style.display = "inline-block";
-         pauseSong.style.display = "none";
-
-      }else{
-         audio.play();
-         localStorage.setItem("isPlaying",true);
-         playSong.style.display = "none";
-         pauseSong.style.display = "inline-block";       
-      }
-   }
-
-   if(isShift){
-      switch(e.code.toString()){
-         case "Comma":
-            handlePlayRate("decrease");
-            break;
-         case "Period":
-            handlePlayRate("increase");
-            break;
-         default:
-            handlePlayRate("");
-      }
-   }
-   if(altKey){
-      switch(e.code.toString()){
-         case "KeyP":
-            openPlaylist();
-            break;
-         case "keyV":
-            break;
-      }
-   }
-});
-
-window.onload = () => {
-   localStorage.removeItem("isPlaying");
-   localStorage.removeItem("playRate");
-};
-window.onunload = () => {
-   localStorage.removeItem("isPlaying");
-   localStorage.removeItem("playRate");
-};
