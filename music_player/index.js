@@ -205,20 +205,24 @@ const setAudioProgress = (e) => {
    const value = e.currentTarget.value;
    if(isPlaying === "true"){
       audio.currentTime = ( value * audio.duration ) / 100;
-      console.log(audio.currentTime , value * audio.duration )
+   }
+   else{
+      audio.currentTime = (audio.duration / 60 ) * progressOfSong.value ;
    }
 }
 const playAudio = () => {
    localStorage.setItem("isPlaying",true);
+   audio.play();
    toggleDisplay(playSong);
    toggleDisplay(pauseSong);
-   audio.play();
 }
 const pauseAudio = () => {
    localStorage.setItem("isPlaying",false);
-   toggleDisplay(playSong);
-   toggleDisplay(pauseSong);
    audio.pause();
+   if(pauseSong.style.display === "inline-block"){
+      toggleDisplay(playSong);
+      toggleDisplay(pauseSong);
+   }
 }
 
 // Elements Events Listeners and their methods
@@ -245,6 +249,9 @@ resetDuration.addEventListener("click" , () => {
    audio.currentTime = 0;
    audio.playbackRate = 1;
    pauseAudio();
+   progressOfSong.value = 0;
+   
+
 });
 
 volumeOfSong.addEventListener("change",() => {
