@@ -62,6 +62,18 @@
    window.onload = () => {
       localStorage.removeItem("isPlaying");
       localStorage.removeItem("playRate");
+      const localTheme = localStorage.getItem("setTheme");
+      const docBody = document.body.classList;
+      if(localTheme === null || localTheme === ""){
+         localStorage.setItem("setTheme","");
+         document.querySelector("#changeTheme i").classList.add("fa-sun-o");
+         document.querySelector("#changeTheme #app-theme").textContent = "Light"; 
+      }
+      else{
+         docBody.add('dark');
+         document.querySelector("#changeTheme i").classList.add("fa-moon-o");
+         document.querySelector("#changeTheme #app-theme").textContent = "Dark"; 
+      }
    };
    window.onunload = () => {
       localStorage.removeItem("isPlaying");

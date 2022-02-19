@@ -43,7 +43,7 @@ body{
    position: absolute;
    top: 26px;
    right: 18px;
-   max-width: 150px;
+   max-width: 180px;
    background: #dfe6ed;
    border-radius: 4px;
    box-shadow: 0 0 3px 0.5px rgb(0 0 0 / 15%);
@@ -76,17 +76,17 @@ audio{
    position: absolute;
    height: 100%;
 }
-.playlist-backdrop{
-   animation: zoomIn 0.4s ease-in-out 0.1s 1 forwards alternate;
+.backdrop{
    position: absolute;
    left: 0;
    right: 0;
    top: 0;
-   z-index: 98;
-   /* display: none; */
+   z-index: 50;
    bottom: 0;
-   background-color: rgba(0,0,0,.4);
+   animation: zoomIn 0.4s ease-in-out 0.1s 1 forwards alternate;
+   background-color: rgba(0,0,0,.07);
 }
+
 .playlist-container{
    z-index: 100;
    height: 100%;
@@ -107,11 +107,9 @@ audio{
    border-top-left-radius: 16px;
    border-bottom-left-radius: 16px;
    box-shadow: 0 0 15px 5px rgb(193 186 186 / 50%);
-   background: #e7e7e7;
-   border: 3px solid #c9ced3;
-   /* box-shadow: 0 0 9px 10px #000000;
-    background: rgba(231,231,231,0.9);
-    border: 3px solid #c9ced3; */
+   background: #e7e7e7;    
+   border-left: 3px solid #c9ced3;
+   border-right: 3px solid #c9ced3;
 }
 .playlist-song-container .song-details{
    padding: 8px 0;
@@ -147,7 +145,16 @@ audio{
    font-weight: 400;
 }
 
-
+#timer{
+   background: none;
+   border: none;
+   -webkit-appearance: none;
+   appearance: none;
+   padding: 4px 2px;
+}
+#timer option{
+   width: min-content;
+}
 
 /* Animations */
 .moveAnimation{
@@ -278,4 +285,21 @@ input[type=range] {
 .volumeController{
   
    display: inline-block;
+}
+
+
+@media (prefers-color-scheme: dark) {
+   body.dark{
+      color:#fff;
+      background: #c9ced3;
+   }
+   body.dark .player.card{
+      background-color: #1e2227;
+      color:#fff ;
+   }
+   body.dark .playlist-theme{
+      box-shadow: 0 0 15px 5px rgb(193 186 186 / 50%);
+      color: #e7e7e7;
+      background: #1e2227;
+   }
 }

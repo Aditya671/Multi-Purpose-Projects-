@@ -17,7 +17,7 @@ const resetDuration = document.querySelector("#resetDuration");
 const volumeControl = document.querySelector("#volumeControl");
 const volumeOfSong = document.querySelector("#volumeOfSong");
 const playlistModal = document.querySelector(".playlist-modal");
-const playlistbackdrop = document.querySelector(".playlist-backdrop");
+const backdrop = document.querySelector(".backdrop");
 const playListContainer = document.querySelector("#playlistContainer");
 const playListSongName = document.querySelectorAll(".playlist-song-name");
 const playlistSongBar = document.querySelector(".song-text").clientWidth;
@@ -25,6 +25,9 @@ const audio = document.querySelector("audio");
 let songStartDuration = document.querySelector("#songStartDuration");
 let songEndDuration = document.querySelector("#songEndDuration");
 let muteKey = 0; 
+let setCloseTime;
+const changeTheme = document.querySelector("#changeTheme");
+const timer = document.querySelector("#timer");
 
 // CSS Animations Handler
 const handleAddingMovingAnimation = (ele) => {
@@ -42,7 +45,7 @@ const handleRemoveMovingAnimation = (ele) => {
    ele.currentTarget.children[0].classList.remove("songAnimate")
 };
 
-const openPlaylistModal = () => {
+const openPlaylistContainer = () => {
    if(playlistContainer.classList.contains("open")){
       playlistContainer.classList.remove("open");
    }
@@ -210,6 +213,12 @@ const setAudioProgress = (e) => {
       audio.currentTime = (audio.duration / 60 ) * progressOfSong.value ;
    }
 }
+const resetAudio = () => {
+   audio.currentTime = 0;
+   audio.playbackRate = 1;
+   pauseAudio();
+   progressOfSong.value = 0;
+}
 const playAudio = () => {
    localStorage.setItem("isPlaying",true);
    audio.play();
@@ -245,14 +254,7 @@ playPause.addEventListener("click",(e) => {
    }
 });
 
-resetDuration.addEventListener("click" , () => {
-   audio.currentTime = 0;
-   audio.playbackRate = 1;
-   pauseAudio();
-   progressOfSong.value = 0;
-   
-
-});
+resetDuration.addEventListener("click" ,resetAudio);
 
 volumeOfSong.addEventListener("change",() => {
    audio.volume = ( volumeOfSong.value) / 100;
@@ -272,14 +274,21 @@ volumeControl.addEventListener("dblclick", () => {
    }
 });
 
-playlistbackdrop.addEventListener("click", () =>{
-   openPlaylistModal();
-   toggleDisplay(playlistModal)
+backdrop.addEventListener("click", () =>{
+   if(playlistModal.style.display === "inline-block"){
+      openPlaylistContainer();
+      toggleDisplay(playlistModal)
+   }
+   if(document.querySelector(".app-menu-container").style.display === "inline-block"){
+      toggleDisplay(document.querySelector(".app-menu-container"))
+   }
+   toggleDisplay(backdrop);
 }); 
 
 playListModal.addEventListener("click",() => {
    toggleDisplay(playlistModal);
-   openPlaylistModal()
+   toggleDisplay(backdrop);
+   openPlaylistContainer()
 });
 
 fastForward.addEventListener("click",() => handlePlayRate("increase"));
@@ -294,6 +303,44 @@ audio.addEventListener("loadeddata",updateAudioProgress);
 
 audio.addEventListener("timeupdate",updateAudioProgress);
 
-appMenuButton.addEventListener("click",() => toggleDisplay(document.querySelector(".app-menu-container")));
+appMenuButton.addEventListener("click",() => {
+   toggleDisplay(document.querySelector(".app-menu-container"))
+   toggleDisplay(backdrop)
+});
 
 // KeyBoard keys and Window handlers
+changeTheme.addEventListener("click",() =>{
+   const localTheme = localStorage.getItem("setTheme")
+   const docBody = document.body.classList;
+   if(localTheme === "dark"){
+      docBody.remove('dark');
+      localStorage.setItem("setTheme","");
+      document.querySelector("#changeTheme i").classList.add("fa-sun-o");
+      document.querySelector("#changeTheme i").classList.remove("fa-moon-o");
+      document.querySelector("#changeTheme #app-theme").textContent = "Light"; 
+      
+   }
+   else{
+      docBody.add('dark');
+      localStorage.setItem("setTheme","dark");
+      document.querySelector("#changeTheme i").classList.remove("fa-sun-o");
+      document.querySelector("#changeTheme i").classList.add("fa-moon-o");
+      document.querySelector("#changeTheme #app-theme").textContent = "Dark";
+   }
+});
+
+timer.addEventListener("change",() => {
+   const selectedOption = timer.value;
+   clearTimeout(setCloseTime);
+   alert("The Player will automatically reset in " + timer.selectedOptions[0].innerHTML);
+   closeApp(selectedOption);
+});
+
+const closeApp = (selectedOption) => {
+   clearTimeout(setCloseTime);
+   setCloseTime = setTimeout(() => {
+      resetAudio();
+      volumeOfSong.value = 0;
+      handleVolumeIcon(volumeOfSong.value)
+   },selectedOption);
+};

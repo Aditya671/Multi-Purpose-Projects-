@@ -12,6 +12,7 @@
 
 </head>
 <body class="body d-flex align-items-center justify-content-center">
+   <div class="backdrop" style="display: none;"></div>
    <div class="container m-3" id="player-container">
       <div class="player card p-2 " id="player">
          <div class="player-dialog">
@@ -34,26 +35,36 @@
                <div class="app-menu-container zIndex100" style="display: none;">
                   <div class="app-menu-dialog">
                      <div class="app-menu-details row">
-                        <div class="col-12text-left" data-menu="">
-                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                        <div class="col-12 text-left" data-menu="">
+                           <button id="changeTheme" class="btn btn-hidden-container text-left letterSpacing-0">
                               <span data-tooltipText="Application Theme">
-                                 <i class="fa fa-sun-o"></i>
+                                 <i class="fa"></i>
                               </span>
-                              Theme: <span id="app-theme"></span></button>
+                              Theme: <span data-tooltipText="Switch between Light/Dark Theme" id="app-theme"></span></button>
                         </div>
                         <div class="col-12 text-left" data-menu="">
                            <button class="btn btn-hidden-container text-left letterSpacing-0">
-                              <span data-tooltipText="Share Song">
+                              <span data-tooltipText="Share App">
                                  <i class="fa fa-share-alt"></i>
                               </span>
-                              Share</button>
+                              Share App</button>
                         </div>
                         <div class="col-12 text-left" data-menu="">
                            <button class="btn btn-hidden-container text-left letterSpacing-0">
                               <span data-tooltipText="Sleep timer">
                                  <i class="fa fa-moon-o"></i>
-                              </span> 
-                              Sleep timer</button>
+                              </span>
+                              Sleep timer:
+                              <span id="sleepTime" data-tooltipText="Click Me to check Time Slots">
+                                 <select id="timer">
+                                    <option value="60000">1 min</option>
+                                    <option value="300000">5 min</option>
+                                    <option value="600000">10 min</option>
+                                    <option value="3000000">30 min</option>
+                                    <option value="3600000">1h</option>
+                                 </select>
+                              </span>
+                        </button>
                         </div>
                      </div>
                   </div>
@@ -167,7 +178,6 @@
       </div>
    </div>
    <div class="playlist-modal" style="display: none;">
-      <div class="playlist-backdrop"></div>
       <div class="container-fluid h-100 p-0 moveAnimation playlist-container" id="playlistContainer">
          <div class="playlist-theme p-3">
          <div class="playlist-dialog">
@@ -184,7 +194,7 @@
                            <div class="col-sm-2 text-center" data-songId="">
                               <i class="fa musicIcon-size fa-music"></i>
                            </div>                        
-                           <div class="col-sm-7">
+                           <div class="col-sm-8">
                               <div class="song-text">
                                  <h5 class="playlist-song-name" data-songName="01">
                                     <span>Song 01 Song 01 Song 01 Song 01 Song 01 Song 01</span>
@@ -193,7 +203,7 @@
                                  <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                               </div>
                            </div>                        
-                           <div class="col-sm-3 text-center">
+                           <div class="col-sm-2 text-center">
                               <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                                  <i class="fa fa-heart-o"></i>
                               </div>
@@ -204,7 +214,7 @@
                            <div class="col-sm-2 text-center" data-songId="">
                               <i class="fa musicIcon-size fa-music"></i>
                            </div>                        
-                           <div class="col-sm-7">
+                           <div class="col-sm-8">
                               <div class="song-text">
                                  <h5 class="playlist-song-name" data-songName="02">
                                     <span>Song 02 Song 02</span>
@@ -213,7 +223,7 @@
                                  <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                               </div>
                            </div>                        
-                           <div class="col-sm-3 text-center">
+                           <div class="col-sm-2 text-center">
                               <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                                  <i class="fa fa-heart-o"></i>
                               </div>
@@ -224,7 +234,7 @@
                            <div class="col-sm-2 text-center" data-songId="">
                               <i class="fa musicIcon-size fa-music"></i>
                            </div>                        
-                           <div class="col-sm-7">
+                           <div class="col-sm-8">
                               <div class="song-text">
                                  <h5 class="playlist-song-name" data-songName="03">
                                     <span>Song 03 Song 03 Song 03 Song 03</span>
@@ -233,7 +243,7 @@
                                  <h5 class="playlist-song-artist" data-songArtist="">Artist of Song</h5>
                               </div>
                            </div>                        
-                           <div class="col-sm-3 text-center">
+                           <div class="col-sm-2 text-center">
                               <div class="playlist-likeSong likeIcon likeThisSong" data-songId="">
                                  <i class="fa fa-heart-o"></i>
                               </div>
