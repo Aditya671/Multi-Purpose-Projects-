@@ -5,46 +5,278 @@
    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
    <title>Custom Video Player</title>
    <meta name='viewport' content='width=device-width, initial-scale=1'>
-   <link rel='stylesheet' type='text/css' media='screen' href='../common_forAll/generated_css/main.css'>
-   <link rel='stylesheet' type='text/css' media='screen' href='./video.css'>
+   <link rel='stylesheet' type='text/css' media='screen' href='./player.css'>
+   <link rel="stylesheet" href="../common/icons/font-awesome.min.css" type="text/css">
+   <script src="https://unpkg.com/@popperjs/core@2"></script>
+   <script src="https://unpkg.com/tippy.js@6"></script>
 </head>
-<body>
-   <section class="p-15">
-      <div class="">
-         <h1><b><i>Custom Video Player</i></b></h1>
-         <br/>
-         <div class="videoPlayerController" style="max-width: 500px;">
-            <video id='videoBox' class="screen" style="max-width: 500px;">
-               <source src="sblock.mp4" type="video/mp4">
-               <track src="sblock_en.vtt" kind="subtitles" srclang="en" label="English">
-            </video>
-            <track src=""/>
-            <div class="controlBar">
-               <!-- 20% -->
-               <div class="mainBtns">
-                  <button class="btn btn-play" id="playBtn">
-                     <i class="fa fa-play"></i>
+<body class="body d-flex align-items-center justify-content-center">
+   <div class="backdrop" style="display: none;"></div>
+   <div class="container m-3" id="player-container">
+      <div class="player card p-2 " id="player">
+         <div class="player-dialog">
+            <div class="player-header row text-center align-items-center position-relative">
+               <div class="play-name col-sm-12">
+                  <div class="playlist-name">
+                     PlayList "<span id='playlistName'>My Playlist</span>"
+                  </div>
+                  <div class="video-name">
+                     "<span id="videoName">My Video</span>" in Videos
+                  </div>
+               </div>
+               <div class="app-menu text-right">
+                  <button class="btn btn-hidden-container" id="app-menu-icon">
+                     <span data-tooltipText="Application Menu" id="app-menu-button">
+                        <i class="fa fa-ellipsis-v"></i>
+                     </span>
                   </button>
-                  <button class="btn btn-stop" id="stopBtn">
-                     <i class="fa fa-stop"></i>
-                  </button>
                </div>
-               <!-- 70% -->
-               <div class="progressBar">
-                  <input type="range" class="progress" id="progress" min="0" max="100" step="0.1" value="0"/>
+               <div class="app-menu-container zIndex100" style="display: none;">
+                  <div class="app-menu-dialog">
+                     <div class="app-menu-details row">
+                        <div class="col-12 text-left" data-menu="">
+                           <button id="changeTheme" class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Application Theme">
+                                 <i class="fa"></i>
+                              </span>
+                              Theme: <span data-tooltipText="Switch between Light/Dark Theme" id="app-theme"></span></button>
+                        </div>
+                        <div class="col-12 text-left" data-menu="">
+                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Share App">
+                                 <i class="fa fa-share-alt"></i>
+                              </span>
+                              Share App</button>
+                        </div>
+                        <div class="col-12 text-left" data-menu="">
+                           <button class="btn btn-hidden-container text-left letterSpacing-0">
+                              <span data-tooltipText="Sleep timer">
+                                 <i class="fa fa-moon-o"></i>
+                              </span>
+                              Sleep timer:
+                              <span id="sleepTime" data-tooltipText="Click Me to check Time Slots">
+                                 <select id="timer">
+                                    <option value="60000">1 min</option>
+                                    <option value="300000">5 min</option>
+                                    <option value="600000">10 min</option>
+                                    <option value="3000000">30 min</option>
+                                    <option value="3600000">1h</option>
+                                 </select>
+                              </span>
+                        </button>
+                        </div>
+                     </div>
+                  </div>
                </div>
-               <!-- 10% -->
-               <div class="timeStamp" id="timeStamp">
-                  00:00
-               </div>
-               <div class="moreControls">
-                  <button class="btn btn-fullScreen" id='reqFullScreen'>Full Screen</button>
+            </div>
+            <div class="player-body">
+               <section class="player-data row align-items-center">
+                  <div class="video-thumbnail col-sm-12 text-center">
+                     <img alt="Image of the Video" id='videoThumbnail' class="img-thumbnail fixed-thumbnail m-2 w-75"/>
+                  </div>
+                  <div class="video-details col-sm-12 px-15">
+                     <div class="row align-items-center">
+                        <div class="video-header col-sm-10">
+                           <div class="video-name player-video-name float-animation" data-videoId="">My Video My Video My Video My Video</div>
+                           <div class="video-artist">My Artist</div>
+                        </div>
+                        <div class="like-me col-sm-2 text-right">
+                           <span class="likeIcon likeThisVideo" data-videoId="" id="likeThisVideo">
+                              <i class="fa fa-heart-o"></i>
+                           </span>
+                           <button class="btn btn-hidden-container" id="playListModal">
+                              <span data-tooltipText="Show Playlist">
+                                 <i class="fa fa-list" style="font-size:20px;" ></i>
+                              </span>
+                           </button>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <div class="audio-track-data">
+                     <audio controls loop>
+                        <source src="./01.mp3" type="audio/mp3">
+                     </audio>
+                  </div>
+                  <div class="video-progress col-sm-12">
+                     <div class="progress-bar px-15">
+                        <div class="progress-range">
+                           <input type="range" value="0" step="any" id="progressOfVideo" class="progress-inputField w-100" />
+                        </div>
+                        <span id="videoStartDuration" class="start-duration"></span>
+                        <span id="videoEndDuration" class="end-duration float-right"></span>
+                     </div>
+                  </div>
+               </section>
+            </div>
+            <div class="player-footer d-flex align-items-center justify-content-center">
+               <div class="player-functions row" style="width: 600px;">
+                  <div class="col-2 col-sm-2 col-md-2 text-right">
+                     <button class="btn btn-hidden-container"  id="shuffleVideoList">
+                        <span data-tooltipText="Shuffle Videos List">
+                           <i class="fa fa-random" style="font-size:20px;"></i>
+                        </span>
+                     </button>
+                  </div>
+                  <div class="col-7 col-sm-7 col-md-7 text-center">
+                     <button class="btn btn-hidden-container" id="backForward" >
+                        <span data-tooltipText="Fase Backward"  data-nextrate="">
+                           <i class="fa fa-backward" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="prevVideo" >
+                        <span data-tooltipText="Previous Video">
+                           <i class='fa fa-angle-left' style='font-size:20px' ></i>
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="playPause" >
+                        <span data-tooltipText="Play-Pause the Video">
+                           <i class="fa fa-pause" style="display:none!important" id="pauseVideo" style="font-size:20px;"></i>
+                           <i class="fa fa-play" style="display:inline-block!important"id="playVideo" style="font-size:20px;"></i>
+                        </span>
+                        
+                     </button>
+                     <button class="btn btn-hidden-container" id="resetDuration" >
+                        <span data-tooltipText="Reset Duration">
+                           <i class="fa fa-stop" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     
+                     <button class="btn btn-hidden-container" id="nextVideo" >
+                        <span data-tooltipText="Next Video">
+                           <i class='fa fa-angle-right' style='font-size:20px' ></i>	
+                        </span>
+                     </button>
+                     <button class="btn btn-hidden-container" id="fastForward" >
+                        <span data-tooltipText="Fast Forward" data-nextrate="">
+                           <i class="fa fa-forward" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                  </div>
+                  <div class="col-3 col-sm-3 col-md-3">
+                     <button class="btn btn-hidden-container position-relative" id="volumeControl">
+                        <span data-tooltipText="Change Volume">
+                           <i class="fa fa-volume-up" style="font-size:20px;" ></i>
+                        </span>
+                        <div class="volumne-panel" style="display: none;">
+                           <div class="volume-dialog">
+                              <input type="range" value="100" step="any" id="volumeOfVideo" class="progress-inputField volumeController w-100">
+                           </div>
+                        </div>
+                     </button>
+                     <button class="btn btn-hidden-container" id="repeatVideo">
+                        <span data-tooltipText="Repeat Button">
+                           <i class="fa fa-repeat" style="font-size:20px;" ></i>
+                        </span>
+                     </button>
+                     
+                  </div>
                </div>
             </div>
          </div>
-      </div> 
-   </section>
+      </div>
+   </div>
+   <div class="playlist-modal" style="display: none;">
+      <div class="container-fluid h-100 p-0 moveAnimation playlist-container" id="playlistContainer">
+         <div class="playlist-theme p-3">
+         <div class="playlist-dialog">
+            <div class="playlist-content">
+               <div class="playlist-header">
+                  <div class="playlist-title pb-15">
+                     <h4 class="h4 text-center"><i>Playlist Name</i></h4>
+                  </div>
+               </div>
+               <div class="playlist-body">
+                  <div class="video-lists" id="videoList">
+                     <div class="playlist-video-container">
+                        <div class="video-details row align-items-center" id="video-01" data-videoId="">
+                           <div class="col-sm-2 text-center" data-videoId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-8">
+                              <div class="video-text">
+                                 <h5 class="playlist-video-name" data-videoName="01">
+                                    <span>Video 01 Video 01 Video 01 Video 01 Video 01 Video 01</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-video-artist" data-videoArtist="">Artist of Video</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-2 text-center">
+                              <div class="playlist-likeVideo likeIcon likeThisVideo" data-videoId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+                        
+                        <div class="video-details row align-items-center" id="video-02" data-videoId="">
+                           <div class="col-sm-2 text-center" data-videoId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-8">
+                              <div class="video-text">
+                                 <h5 class="playlist-video-name" data-videoName="02">
+                                    <span>Video 02 Video 02</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-video-artist" data-videoArtist="">Artist of Video</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-2 text-center">
+                              <div class="playlist-likeVideo likeIcon likeThisVideo" data-videoId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+   
+                        <div class="video-details row align-items-center" id="video-03" data-videoId="">
+                           <div class="col-sm-2 text-center" data-videoId="">
+                              <i class="fa musicIcon-size fa-music"></i>
+                           </div>                        
+                           <div class="col-sm-8">
+                              <div class="video-text">
+                                 <h5 class="playlist-video-name" data-videoName="03">
+                                    <span>Video 03 Video 03 Video 03 Video 03</span>
+                                    <div class="content"></div>
+                                 </h5>
+                                 <h5 class="playlist-video-artist" data-videoArtist="">Artist of Video</h5>
+                              </div>
+                           </div>                        
+                           <div class="col-sm-2 text-center">
+                              <div class="playlist-likeVideo likeIcon likeThisVideo" data-videoId="">
+                                 <i class="fa fa-heart-o"></i>
+                              </div>
+                           </div>                        
+                        </div>
+   
+                     </div>
+                  </div>
+               </div>
+               <div class="playlist-footer"></div>
+            </div>
+         </div>
+      </div>
+      </div>
+      
+   </div>
+   
+   <script>
+      const hovertext = document.querySelector("button span");
+    
+      tippy('button span', {
+         placement: 'bottom',
+         animation:'fade',
+         content(reference) {
+            const id = reference.getAttribute('data-tooltipText');
+            return id;
+         },
+         allowHTML: true,
+      });
+      // Styling CSS with JS
+      
+   </script>
    <!-- Script Below -->
-   <script src='video.js'></script>
+   <script src='index.js'></script>
+   <script src='keyboardHandler.js'></script>
 </body>
 </html>
